@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Menu Restoran</title>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eee9df;
+            margin: 0;
+            color: #444;
+        }
+
+        /* Header */
+        header {
+            background-color: #3f3f3f;
+            color: #f5f0e8;
+            text-align: center;
+            padding: 20px 15px 10px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 35px;
+            letter-spacing: 3px;
+        }
+
+        header p {
+            color: #d6d1c8;
+            margin: 8px 0 0;
+        }
+
+        /* Navigasi */
+        nav {
+            background-color: #2e2e2e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav a {
+            color: #eee9df;
+            text-decoration: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: background-color 0.2s, color 0.2s;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: #555;
+            color: #fff;
+        }
+
+        .nav-separator {
+            color: #777;
+            user-select: none;
+        }
+
+        h2 {
+            text-align: center;
+            color: #3f3f3f;
+        }
+
+        h3 {
+            text-align: center;
+            color: #777;
+        }
+
+        /* Kontainer Umum Section */
+        .section-container {
+            width: 80%;
+            max-width: 800px;
+            margin: 35px auto;
+            background-color: #f8f5ee;
+            padding: 25px;
+            border-radius: 6px;
+            border-bottom: 2px solid #aaa39a;
+            line-height: 1.6;
+        }
+
+        .section-container h2 {
+            margin-top: 0;
+        }
+
+        /* MENU */
+        .menu {
+            width: 80%;
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background-color: #f8f5ee;
+            margin-bottom: 24px;
+            padding: 15px;
+            border-bottom: 2px solid #aaa39a;
+            border-radius: 6px;
+        }
+
+        .menu-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .menu-content img {
+            width: 150px;
+            height: 110px;
+            object-fit: cover;
+            margin-right: 25px;
+            border-radius: 5px;
+            flex-shrink: 0;
+        }
+
+        .info {
+            flex: 1;
+        }
+
+        .info h4 {
+            font-size: 21px;
+            margin: 0 0 10px;
+            color: #3f3f3f;
+        }
+
+        .info h4 a {
+            color: #3f3f3f;
+            text-decoration: none;
+        }
+
+        .info h4 a:hover {
+            color: #8c4c2a;
+            text-decoration: underline;
+        }
+
+        .info p {
+            margin: 5px 0;
+            color: #777;
+        }
+
+        .harga {
+            font-size: 18px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .btn-detail {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 6px 14px;
+            background-color: #3f3f3f;
+            color: #f5f0e8;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .btn-detail:hover {
+            background-color: #555;
+        }
+
+        /* Video Styling */
+        .video-box {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .video-box video {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            max-height: 350px;
+            border-radius: 6px;
+            object-fit: cover;
+            background-color: #000;
+            display: block;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* Alamat & Kontak */
+        .alamat {
+            background-color: #d4cec3;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #3f3f3f;
+            color: #eee9df;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="halaman-utama">
+        <h1>RESTORAN KACIW</h1>
+        <p>Cita Rasa Autentik &amp; Khas</p>
+    </header>
+
+    <!-- Bilah Navigasi -->
+    <nav>
+        <a href="#halaman-utama">Halaman Utama</a>
+        <span class="nav-separator">|</span>
+        <a href="#home">Home</a>
+        <span class="nav-separator">|</span>
+        <a href="#profil">Profil</a>
+        <span class="nav-separator">|</span>
+        <a href="#about">About</a>
+        <span class="nav-separator">|</span>
+        <a href="#gallery">Gallery</a>
+        <span class="nav-separator">|</span>
+        <a href="#kontak">Kontak</a>
+    </nav>
+
+    <!-- Bagian Menu / Home -->
+    <section id="home">
+        <br>
+        <h2>DAFTAR MENU</h2>
+        <h3>Menu Makanan &amp; Minuman</h3>
+
+        <div class="menu">
+
+            <!-- Item 1: Nasi Goreng Spesial -->
+            <div class="menu-item">
+                <div class="menu-content">
+                    <img src="nasi-goreng.jpg" alt="Nasi Goreng">
+                    <div class="info">
+                        <h4><a href="nasi-goreng.html">Nasi Goreng Spesial</a></h4>
+                        <p>Nasi goreng dengan telur dan bumbu khas restoran.</p>
+                        <p class="harga">&dollar;5</p>
+                        <a href="nasi-goreng.html" class="btn-detail">Lihat Halaman Menu &rarr;</a>
+                    </div>
+                </div>
+                <div class="video-box">
+                    <video autoplay muted loop controls>
+                        <source src="video_1.mp4" type="video/mp4">
+                        Browser Anda tidak mendukung tag video.
+                    </video>
+                </div>
+            </div>
+
+            <!-- Item 2: Sate Padang -->
+            <div class="menu-item">
+                <div class="menu-content">
+                    <img src="sate-padang.jpg" alt="Sate Padang">
+                    <div class="info">
+                        <h4><a href="sate-padang.html">Sate Padang</a></h4>
+                        <p>Sate ayam dengan bumbu khas Padang yang lezat.</p>
+                        <p class="harga">&dollar;6</p>
+                        <a href="sate-padang.html" class="btn-detail">Lihat Halaman Menu &rarr;</a>
+                    </div>
+                </div>
+                <div class="video-box">
+                    <video autoplay muted loop controls>
+                        <source src="video_2.mp4" type="video/mp4">
+                        Browser Anda tidak mendukung tag video.
+                    </video>
+                </div>
+            </div>
+
+            <!-- Item 3: Ketoprak Indomie -->
+            <div class="menu-item">
+                <div class="menu-content">
+                    <img src="Ketoprak indomie.jpeg" alt="Ketoprak Indomie">
+                    <div class="info">
+                        <h4><a href="ketoprak-indomie.html">Ketoprak Indomie</a></h4>
+                        <p>Perpaduan ketoprak dan mie yang unik dan nikmat.</p>
+                        <p class="harga">&dollar;7</p>
+                        <a href="ketoprak-indomie.html" class="btn-detail">Lihat Halaman Menu &rarr;</a>
+                    </div>
+                </div>
+                <div class="video-box">
+                    <video autoplay muted loop controls>
+                        <source src="video_3.mp4" type="video/mp4">
+                        Browser Anda tidak mendukung tag video.
+                    </video>
+                </div>
+            </div>
+
+            <!-- Item 4: Jus Jambu -->
+            <div class="menu-item">
+                <div class="menu-content">
+                    <img src="JUS-JAMBU.jpg" alt="Jus Jambu">
+                    <div class="info">
+                        <h4><a href="jus-jambu.html">Jus Jambu</a></h4>
+                        <p>Jus jambu segar dan cocok untuk menemani makanan.</p>
+                        <p class="harga">&dollar;3</p>
+                        <a href="jus-jambu.html" class="btn-detail">Lihat Halaman Menu &rarr;</a>
+                    </div>
+                </div>
+                <div class="video-box">
+                    <video autoplay muted loop controls>
+                        <source src="video_4.mp4" type="video/mp4">
+                        Browser Anda tidak mendukung tag video.
+                    </video>
+                </div>
+            </div>
+
+            <!-- Item 5: Jus Apel -->
+            <div class="menu-item">
+                <div class="menu-content">
+                    <img src="jus apel.jpg" alt="Jus Apel">
+                    <div class="info">
+                        <h4><a href="jus-apel.html">Jus Apel</a></h4>
+                        <p>Minuman jus apel segar dengan rasa manis alami.</p>
+                        <p class="harga">&dollar;3</p>
+                        <a href="jus-apel.html" class="btn-detail">Lihat Halaman Menu &rarr;</a>
+                    </div>
+                </div>
+                <div class="video-box">
+                    <video autoplay muted loop controls>
+                        <source src="video_5.mp4" type="video/mp4">
+                        Browser Anda tidak mendukung tag video.
+                    </video>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Bagian Profil -->
+    <section id="profil" class="section-container">
+        <h2>Profil Restoran</h2>
+        <p>Restoran Kaciw didirikan untuk menghadirkan sajian nusantara pilihan dengan bahan-bahan berkualitas tinggi dan resep tradisional yang autentik. Kami mengutamakan kebersihan, kenyamanan suasana, dan kepuasan setiap pelanggan.</p>
+    </section>
+
+    <!-- Bagian About -->
+    <section id="about" class="section-container">
+        <h2>Tentang Kami</h2>
+        <p>Berawal dari warung kuliner sederhana, Restoran Kaciw kini berkembang menjadi tempat berkumpul favorit keluarga dan rekan kerja. Kami percaya bahwa hidangan lezat berpadu dengan pelayanan ramah akan selalu memberikan pengalaman bersantap yang berkesan.</p>
+    </section>
+
+    <!-- Bagian Gallery -->
+    <section id="gallery" class="section-container">
+        <h2>Galeri</h2>
+        <div class="gallery-grid">
+            <img src="nasi-goreng.jpg" alt="Galeri 1">
+            <img src="sate-padang.jpg" alt="Galeri 2">
+            <img src="Ketoprak indomie.jpeg" alt="Galeri 3">
+            <img src="JUS-JAMBU.jpg" alt="Galeri 4">
+        </div>
+    </section>
+
+    <!-- Bagian Alamat & Kontak -->
+    <section id="kontak" class="alamat">
+        <h2>Kontak &amp; Alamat</h2>
+        <p>
+            <strong>Restoran Kaciw</strong><br>
+            Jl. Pamulang Sonoan Lagi No. 25<br>
+            Tangsel, Banten
+        </p>
+        <p>
+            Telepon: +62 812-3456-7890<br>
+            Email: kontak@restorankaciw.com
+        </p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Restoran Kaciw. Semua Hak Dilindungi.</p>
+    </footer>
+
+</body>
+</html>
